@@ -7,8 +7,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     paddingBottom: 20,
     display: "flex",
-    justifyContent: "center",
-    marginTop: 32,
   },
   input: {
     borderWidth: 1,
@@ -18,6 +16,7 @@ export const styles = StyleSheet.create({
     height: 50,
     padding: 10,
     borderRadius: 5,
+    marginHorizontal: "auto",
   },
   submitBtn: {
     width: "50%",
@@ -76,5 +75,13 @@ export const styles = StyleSheet.create({
   },
   doneTodo: {
     textDecorationLine: "line-through",
+  },
+  itemContainer: {
+    borderColor: "black",
+    borderWidth: 2,
+    marginVertical: "8",
+    padding: "12",
+    width: "100%",
+    borderRadius: 10,
   },
 });
