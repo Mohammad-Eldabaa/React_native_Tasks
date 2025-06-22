@@ -37,10 +37,22 @@ export default function Main() {
 
   const save = async () => {
     const jsonValue = await AsyncStorage.getItem("tasks");
+    let data = JSON.parse(jsonValue);
+    if (data.length == 0 && toDos.length == 0) {
+      console.log("is equal 0");
+      data = [
+        {
+          Title: "Note",
+          Descrition: "you can use long press to make the note completed",
+          isDone: false,
+        },
+      ];
+    }
+    // console.log(toDos.length);
     if (title) {
       setTODos([
-        ...JSON.parse(jsonValue),
-        { Title: title, Descrition: descrition },
+        ...data,
+        { Title: title, Descrition: descrition, isDone: false },
       ]);
     }
     setTitle("");
@@ -48,7 +60,7 @@ export default function Main() {
   };
 
   return (
-    <View style={[styles.container, { paddingTop: 48 }]}>
+    <View style={[styles.container, { justifyContent: "center" }]}>
       <TodoTitle />
       <Inputs
         title={title}
@@ -58,11 +70,6 @@ export default function Main() {
       />
 
       <ButtonSubmit onclick={save} />
-
-      <View style={styles.dividerLine} />
-
-      <ShowButton />
-      <TodoList heigh={450} />
     </View>
   );
 }
