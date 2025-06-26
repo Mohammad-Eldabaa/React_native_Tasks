@@ -2,61 +2,22 @@ import { View } from "react-native";
 import { styles } from "./../../style";
 import { useEffect, useState } from "react";
 import ButtonSubmit from "./button";
-import ShowButton from "./showButton";
-import TodoList from "./TodoList";
 import TodoTitle from "./Title";
 import Inputs from "./Inputs";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch, useSelector } from "react-redux";
+import { addTodo } from "../redux/slice";
+
 export default function Main() {
   const [title, setTitle] = useState("");
-  const [descrition, setDescrition] = useState("");
-  const [toDos, setTODos] = useState([]);
-  const getData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("tasks");
-      setTODos(jsonValue != null ? JSON.parse(jsonValue) : []);
-    } catch (e) {
-      console.error("Error loading tasks:", e);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const jsonValue = JSON.stringify(toDos);
-        await AsyncStorage.setItem("tasks", jsonValue);
-      } catch (e) {
-        console.error("Error saving tasks:", e);
-      }
-    })();
-  }, [toDos]);
-
-  const save = async () => {
-    const jsonValue = await AsyncStorage.getItem("tasks");
-    let data = JSON.parse(jsonValue);
-    if (data.length == 0 && toDos.length == 0) {
-      console.log("is equal 0");
-      data = [
-        {
-          Title: "Note",
-          Descrition: "you can use long press to make the note completed",
-          isDone: false,
-        },
-      ];
-    }
-    // console.log(toDos.length);
+  const [description, setDescription] = useState("");
+  const todoList = useSelector((state) => state.todosList.todos);
+  const dispatch = useDispatch();
+  const save = () => {
     if (title) {
-      setTODos([
-        ...data,
-        { Title: title, Descrition: descrition, isDone: false },
-      ]);
+      dispatch(addTodo({ title, description, isDone: false }));
+      setTitle("");
+      setDescription("");
     }
-    setTitle("");
-    setDescrition("");
   };
 
   return (
@@ -65,8 +26,8 @@ export default function Main() {
       <Inputs
         title={title}
         onChangeTitle={(val) => setTitle(val)}
-        descrition={descrition}
-        onChangeDes={(val) => setDescrition(val)}
+        description={description}
+        onChangeDes={(val) => setDescription(val)}
       />
 
       <ButtonSubmit onclick={save} />

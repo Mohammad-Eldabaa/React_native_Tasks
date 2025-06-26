@@ -15,8 +15,8 @@ export default function DisplayTodo({ route }) {
           elevation: 8,
         }}
       >
-        <Text style={styles.title}>{item.Title}</Text>
-        <Text style={styles.description}>{item.Descrition}</Text>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.description}>{item.description}</Text>
       </View>
     </View>
   );
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     color: "#555",
-    textAlign: "center",
+    textAlign: "start",
     lineHeight: 22,
   },
 });

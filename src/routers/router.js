@@ -3,7 +3,6 @@ import { NavigationContainer, StackRouter } from "@react-navigation/native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Main from "../component/main";
-// import Display from "../pages/Display";
 import StackRouterNav from "./stackRouter";
 import { Text } from "react-native";
 
@@ -20,7 +19,7 @@ export default function Router() {
         screenOptions={{
           tabBarItemStyle: {},
           tabBarStyle: {
-            height: "70",
+            height: 70,
           },
           tabBarLabelStyle: { color: "gray", fontSize: 16 },
         }}

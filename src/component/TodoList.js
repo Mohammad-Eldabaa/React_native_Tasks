@@ -1,50 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../../style";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Entypo from "@expo/vector-icons/Entypo";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-// import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { useDispatch, useSelector } from "react-redux";
+import { chageState, removeTodo } from "../redux/slice";
 
-export default function TodoList({ navigation, status }) {
-  const [toDos, setToDos] = useState([]);
-  const displayedTOdoes = toDos.filter((item) => {
-    if (status == "All") return true;
-    else if (status == "Active") return item.isDone == false;
-    else if (status == "Done") return item.isDone == true;
-  });
-  const getTodos = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("tasks");
-      setToDos(jsonValue != null ? JSON.parse(jsonValue) : []);
-    } catch (e) {
-      console.error("Error loading tasks:", e);
-    }
-  };
+export default function TodoList({ navigation }) {
+  const todoList = useSelector((state) => state.todosList.todos);
+  const st = useSelector((state) => state.todosList.st);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    getTodos();
-  });
-
-  const store = async (index) => {
-    try {
-      const list = toDos;
-      list.splice(index, 1);
-      const jsonValue = JSON.stringify(list);
-      await AsyncStorage.setItem("tasks", jsonValue);
-      // setToDos(toDos.splice(index, 1));
-    } catch (e) {
-      console.error("Error saving tasks:", e);
-    }
-  };
   return (
     <View>
       <FlatList
         style={{ margin: 10 }}
         showsVerticalScrollIndicator={false}
-        data={displayedTOdoes}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => (
+        data={
+          st == true
+            ? todoList.filter((item) => item.isDone == true)
+            : st == false
+            ? todoList.filter((item) => item.isDone == false)
+            : todoList
+        }
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
           <TouchableOpacity
             style={[
               styles.itemContainer,
@@ -58,23 +38,12 @@ export default function TodoList({ navigation, status }) {
               navigation.navigate("DisplayTodo", { ...item });
             }}
             onLongPress={async () => {
-              console.log(toDos);
-
-              const list = toDos.map((val, ind) => {
-                // console.log({ ...item, isDone: !item.isDone });
-                return ind == index ? { ...val, isDone: !val.isDone } : val;
-              });
-
-              console.log(toDos);
-              const jsonValue = JSON.stringify(list);
-              await AsyncStorage.setItem("tasks", jsonValue);
-              setToDos(list);
-              console.log(toDos);
+              dispatch(chageState(item.id));
             }}
           >
             <View style={{ flex: 8 }}>
-              <Text style={{ fontWeight: "bold" }}>{item.Title}</Text>
-              <Text style={{ color: "gray" }}>{item.Descrition}</Text>
+              <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
+              <Text style={{ color: "gray" }}>{item.description}</Text>
             </View>
             <View
               style={{
@@ -89,13 +58,27 @@ export default function TodoList({ navigation, status }) {
                 size={24}
                 color="red"
                 onPress={() => {
-                  store(index);
+                  dispatch(removeTodo(item.id));
                 }}
               />
               {!item.isDone ? (
-                <MaterialIcons name="done" size={24} color="black" />
+                <MaterialIcons
+                  name="done"
+                  size={24}
+                  color="black"
+                  onPress={() => {
+                    dispatch(chageState(item.id));
+                  }}
+                />
               ) : (
-                <MaterialIcons name="done-all" size={24} color="blue" />
+                <MaterialIcons
+                  name="done-all"
+                  size={24}
+                  color="blue"
+                  onPress={() => {
+                    dispatch(chageState(item.id));
+                  }}
+                />
               )}
             </View>
           </TouchableOpacity>

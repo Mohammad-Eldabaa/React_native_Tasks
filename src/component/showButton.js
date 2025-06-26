@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { styles } from "../../style";
+import { useDispatch } from "react-redux";
+import { setSt } from "../redux/slice";
 
-export default function ShowButton({ setAll, setActive, setDone }) {
+export default function ShowButton() {
+  const dispatch = useDispatch();
   const [pressedItem, setPressedItem] = useState(0);
 
   return (
@@ -11,13 +14,13 @@ export default function ShowButton({ setAll, setActive, setDone }) {
         style={[
           styles.filterBtn,
           {
-            color: pressedItem == 0 ? "green" : "green",
             backgroundColor: pressedItem != 0 ? "white" : "gray",
           },
         ]}
         activeOpacity={0.2}
         onPress={() => {
-          setAll();
+          console.log("All");
+          dispatch(setSt("All"));
           setPressedItem(0);
         }}
       >
@@ -28,13 +31,12 @@ export default function ShowButton({ setAll, setActive, setDone }) {
         style={[
           styles.filterBtn,
           {
-            color: pressedItem == 1 ? "white" : "black",
             backgroundColor: pressedItem != 1 ? "white" : "gray",
           },
         ]}
         activeOpacity={0.2}
         onPress={() => {
-          setActive();
+          dispatch(setSt(false));
           setPressedItem(1);
         }}
       >
@@ -45,13 +47,12 @@ export default function ShowButton({ setAll, setActive, setDone }) {
         style={[
           styles.filterBtn,
           {
-            color: pressedItem == 2 ? "white" : "black",
             backgroundColor: pressedItem != 2 ? "white" : "gray",
           },
         ]}
         activeOpacity={0.2}
         onPress={() => {
-          setDone();
+          dispatch(setSt(true));
           setPressedItem(2);
         }}
       >

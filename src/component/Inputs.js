@@ -5,7 +5,7 @@ import { styles } from "../../style";
 export default function Inputs({
   title,
   onChangeTitle,
-  descrition,
+  description,
   onChangeDes,
 }) {
   return (
@@ -17,7 +17,7 @@ export default function Inputs({
         placeholder="Title"
       ></TextInput>
       <TextInput
-        value={descrition}
+        value={description}
         onChangeText={onChangeDes}
         placeholder="Description"
         style={styles.input}
