@@ -1,70 +1,87 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../../style";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Entypo from "@expo/vector-icons/Entypo";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { useDispatch, useSelector } from "react-redux";
+import { chageState, removeTodo } from "../redux/slice";
 
-export default function TodoList({ heigh }) {
-  const [toDos, setToDos] = useState([]);
-  const getTodos = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("tasks");
-      setToDos(jsonValue != null ? JSON.parse(jsonValue) : []);
-    } catch (e) {
-      console.error("Error loading tasks:", e);
-    }
-  };
+export default function TodoList({ navigation }) {
+  const todoList = useSelector((state) => state.todosList.todos);
+  const st = useSelector((state) => state.todosList.st);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    getTodos();
-  });
-
-  const store = async (index) => {
-    try {
-      const list = toDos;
-      list.splice(index, 1);
-      const jsonValue = JSON.stringify(list);
-      await AsyncStorage.setItem("tasks", jsonValue);
-      // setToDos(toDos.splice(index, 1));
-    } catch (e) {
-      console.error("Error saving tasks:", e);
-    }
-  };
   return (
-    <View style={{ height: heigh || "98%" }}>
+    <View>
       <FlatList
-        style={{ margin: 10, width: 350 }}
+        style={{ margin: 10 }}
         showsVerticalScrollIndicator={false}
-        data={toDos}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item, index }) => (
-          <View
+        data={
+          st == true
+            ? todoList.filter((item) => item.isDone == true)
+            : st == false
+            ? todoList.filter((item) => item.isDone == false)
+            : todoList
+        }
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <TouchableOpacity
             style={[
               styles.itemContainer,
               {
-                display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
+                flex: 1,
               },
             ]}
+            onPress={() => {
+              navigation.navigate("DisplayTodo", { ...item });
+            }}
+            onLongPress={async () => {
+              dispatch(chageState(item.id));
+            }}
           >
             <View style={{ flex: 8 }}>
-              <Text style={{ fontWeight: "bold" }}>{item.Title}</Text>
-              <Text style={{ color: "gray" }}>{item.Descrition}</Text>
+              <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
+              <Text style={{ color: "gray" }}>{item.description}</Text>
             </View>
             <View
-              style={{ flex: 1, display: "flex", justifyContent: "center" }}
+              style={{
+                flex: 2,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
             >
               <Entypo
                 name="trash"
                 size={24}
                 color="red"
                 onPress={() => {
-                  store(index);
+                  dispatch(removeTodo(item.id));
                 }}
               />
+              {!item.isDone ? (
+                <MaterialIcons
+                  name="done"
+                  size={24}
+                  color="black"
+                  onPress={() => {
+                    dispatch(chageState(item.id));
+                  }}
+                />
+              ) : (
+                <MaterialIcons
+                  name="done-all"
+                  size={24}
+                  color="blue"
+                  onPress={() => {
+                    dispatch(chageState(item.id));
+                  }}
+                />
+              )}
             </View>
-          </View>
+          </TouchableOpacity>
         )}
       />
     </View>
