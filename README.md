@@ -288,20 +288,6 @@ npm install -g @expo/cli@latest
 npx expo install @react-native-async-storage/async-storage
 ```
 
-## 🔮 Roadmap & Future Enhancements
-
-- [ ] **Cloud Synchronization** - Sync tasks across devices
-- [ ] **Push Notifications** - Task reminders and alerts
-- [ ] **Categories & Tags** - Organize tasks by categories
-- [ ] **Dark Mode** - Theme switching functionality
-- [ ] **Due Dates** - Task scheduling with calendar integration
-- [ ] **Collaboration** - Share tasks with team members
-- [ ] **Voice Input** - Add tasks using voice commands
-- [ ] **Offline Mode** - Full functionality without internet
-- [ ] **Analytics** - Task completion insights
-- [ ] **Export/Import** - Backup and restore functionality
-
-
 
 ## 👨‍💻 Author
 
@@ -312,7 +298,11 @@ npx expo install @react-native-async-storage/async-storage
 
 ## 📸 Screenshots
 
-> **Note**: Add screenshots of your app here to showcase the user interface and functionality.
+![WhatsApp Image 2025-07-20 at 18 16 58_6095ae77](https://github.com/user-attachments/assets/a6bc5351-376a-46cb-be65-3105be9eb81c)
+![WhatsApp Image 2025-07-20 at 18 16 58_6ad5decd](https://github.com/user-attachments/assets/9a5ddcff-dd13-4b8b-aafe-279ba816e3fc)
+![WhatsApp Image 2025-07-20 at 18 16 58_08021674](https://github.com/user-attachments/assets/b2c665c3-3989-44e7-908a-5c89351888fc)
+![WhatsApp Image 2025-07-20 at 18 16 58_0749d445](https://github.com/user-attachments/assets/64bbf22f-6f3c-4860-9ac6-8704ed5077ea)
+![WhatsApp Image 2025-07-20 at 18 16 58_b285910a](https://github.com/user-attachments/assets/b7757b59-cc8e-4dfe-b653-75bbb52bba9c)
 
 ```markdown
 ### Main Task List
