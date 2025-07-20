@@ -153,54 +153,16 @@ React_native_Tasks/
 2. Enter task title and description in the modal
 3. Tap "Save" to add the task to your list
 
-### Editing a Task
-1. Tap on any existing task
-2. Modify the title or description
-3. Save changes to update the task
-
-### Searching Tasks
-1. Use the search bar at the top of the screen
-2. Type keywords to filter tasks in real-time
-3. Clear search to view all tasks
-
 ### Deleting Tasks
-1. Swipe left on a task (iOS) or long press (Android)
-2. Confirm deletion in the prompt
-3. Task will be removed from the list
+1. Tap the delete icon in the task
+2. Task will be removed from the list
 
 ### Marking Tasks Complete
-1. Tap the checkbox next to any task
+1. Tap the true mark next to any task.
 2. Completed tasks will be visually distinguished
 3. Toggle status by tapping again
 
-## 🎨 Customization
 
-### Styling
-The app uses a modular styling approach. You can customize:
-
-```javascript
-// globalStyles.js
-export const colors = {
-  primary: '#007AFF',
-  secondary: '#5AC8FA',
-  success: '#34C759',
-  warning: '#FF9500',
-  danger: '#FF3B30',
-  // Add your custom colors
-};
-
-export const fonts = {
-  regular: 'System',
-  bold: 'System-Bold',
-  // Add custom fonts
-};
-```
-
-### Adding New Features
-1. Create new components in the `components/` directory
-2. Add screens to the `screens/` directory
-3. Update navigation if needed
-4. Add utility functions to `utils/`
 
 ## 📱 Platform-Specific Features
 
@@ -214,34 +176,9 @@ export const fonts = {
 - Android navigation patterns
 - Google Material Design Guidelines compliance
 
-## 🔧 Build & Deployment
-
-### Development Build
-```bash
-# Build for development
-npx expo build:android --type apk
-npx expo build:ios --type simulator
-```
-
-### Production Build
-```bash
-# Build for production
-eas build --platform android
-eas build --platform ios
-```
-
-### App Store Deployment
-```bash
-# Submit to app stores
-eas submit --platform android
-eas submit --platform ios
-```
-
 ## 📊 Performance Optimization
 
 The app implements several performance optimizations:
-
-- **Lazy Loading**: Components load on demand
 - **Memoization**: React.memo for expensive components
 - **Efficient Storage**: Optimized AsyncStorage operations
 - **Minimal Re-renders**: Strategic use of useCallback and useMemo
