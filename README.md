@@ -232,34 +232,12 @@ npx expo install @react-native-async-storage/async-storage
 - GitHub: [@Mohammad-Eldabaa](https://github.com/Mohammad-Eldabaa)
 - Email: [mohammadeldbaa20@gmail.com] 
 
-
-## 📸 Screenshots
-
-![WhatsApp Image 2025-07-20 at 18 16 58_6095ae77](https://github.com/user-attachments/assets/a6bc5351-376a-46cb-be65-3105be9eb81c)
-![WhatsApp Image 2025-07-20 at 18 16 58_6ad5decd](https://github.com/user-attachments/assets/9a5ddcff-dd13-4b8b-aafe-279ba816e3fc)
-![WhatsApp Image 2025-07-20 at 18 16 58_08021674](https://github.com/user-attachments/assets/b2c665c3-3989-44e7-908a-5c89351888fc)
-![WhatsApp Image 2025-07-20 at 18 16 58_0749d445](https://github.com/user-attachments/assets/64bbf22f-6f3c-4860-9ac6-8704ed5077ea)
-![WhatsApp Image 2025-07-20 at 18 16 58_b285910a](https://github.com/user-attachments/assets/b7757b59-cc8e-4dfe-b653-75bbb52bba9c)
-
-```markdown
-### Main Task List
-![Task List Screenshot](./assets/screenshots/task-list.png)
-
-### Add/Edit Task Modal
-![Task Modal Screenshot](./assets/screenshots/task-modal.png)
-
-### Search Functionality
-![Search Screenshot](./assets/screenshots/search-feature.png)
-```
-
----
+<div align="center"> <img src="https://github.com/user-attachments/assets/a6bc5351-376a-46cb-be65-3105be9eb81c" width="300" alt="Screenshot 1" /> <br /><br /> <img src="https://github.com/user-attachments/assets/9a5ddcff-dd13-4b8b-aafe-279ba816e3fc" width="300" alt="Screenshot 2" /> <br /><br /> <img src="https://github.com/user-attachments/assets/b2c665c3-3989-44e7-908a-5c89351888fc" width="300" alt="Screenshot 3" /> <br /><br /> <img src="https://github.com/user-attachments/assets/64bbf22f-6f3c-4860-9ac6-8704ed5077ea" width="300" alt="Screenshot 4" /> <br /><br /> <img src="https://github.com/user-attachments/assets/b7757b59-cc8e-4dfe-b653-75bbb52bba9c" width="300" alt="Screenshot 5" /> </div>
 
 <div align="center">
 
 **⭐ Star this repository if you found it useful!**
 
 *Built with ❤️ using React Native and Expo*
-
-[Report Bug](https://github.com/Mohammad-Eldabaa/React_native_Tasks/issues) · [Request Feature](https://github.com/Mohammad-Eldabaa/React_native_Tasks/issues) · [Ask Question](https://github.com/Mohammad-Eldabaa/React_native_Tasks/discussions)
 
 </div>
